@@ -7,9 +7,11 @@ import { buildSchema } from "type-graphql";
 
 import { HelloWorldResolver } from "./resolver/HelloWorldResolver";
 import { UserResolver } from "./resolver/UserResolver";
+import cookieParser from "cookie-parser";
 
 (async () => {
   const app = express();
+  app.use(cookieParser());
   await createConnection();
 
   const apolloServer = new ApolloServer({
