@@ -9,9 +9,22 @@ services:
     networks:
       - graphqlauth
     depends_on:
-      - postgres
+      - database
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+
+  database:
+    container_name: graphql-auth-postgres
+    networks:
+      - graphqlauth
+    image: postgres:alpine
+    tty: true
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${DATABASE}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
