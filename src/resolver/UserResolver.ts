@@ -9,7 +9,7 @@ import {
   ObjectType,
   Ctx
 } from "type-graphql";
-import { User } from "../entity/User";
+import { User, privilages, genders } from "../entity/User";
 import { hash, compare } from "bcryptjs";
 import {
   createAccessToken,
@@ -27,7 +27,10 @@ class RegisterInput {
   lastName: string;
 
   @Field()
-  gender: string;
+  username: string;
+
+  @Field()
+  gender: genders;
 
   @Field()
   email: string;
@@ -36,7 +39,7 @@ class RegisterInput {
   password: string;
 
   @Field()
-  privilage: string;
+  privilage: privilages;
 }
 
 @ObjectType()
